@@ -12,7 +12,8 @@ CREATE TABLE `librarydb`.`books` (
 	`index_book_binding_type` 	INT DEFAULT NULL,
 	`release_date_book` 		YEAR DEFAULT NULL,  
 	`index_udc` 				INT DEFAULT NULL,
-	`index_bbk` 				INT DEFAULT NULL,	
+	`index_bbk` 				INT DEFAULT NULL,
+	`index_publisher`			INT DEFAULT NULL,
 	`isbn` 						VARCHAR(17) DEFAULT NULL,
 	PRIMARY KEY (`id_books`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32;
@@ -20,15 +21,27 @@ CREATE TABLE `librarydb`.`books` (
 INSERT INTO 
 `librarydb`.`books`
 (`name_book`,`number_of_pages_book`,`index_book_binding_type`,`release_date_book`,
-`index_udc`,`index_bbk`,
+`index_udc`,`index_bbk`,`index_publisher`,
 `isbn`) VALUES
 ('STALKER', 300, 1, 2005,
- 1, 1,
+ 1, 1, 1,
  '111-1-11-111111-1'),
  
 ('WITCHER', 400, 2, 2015,
- 0, 0,
+ 2, 2, 2,
  '222-1-11-111111-1');
+ 
+ CREATE TABLE `librarydb`.`publisher` (
+	`id_publisher` 		INT NOT NULL AUTO_INCREMENT,
+	`publisher_record` 	VARCHAR(256) NOT NULL,
+    UNIQUE(`publisher_record`),
+	PRIMARY KEY (`id_publisher`)
+    
+) ENGINE=InnoDB DEFAULT CHARSET=utf32;
+
+INSERT INTO `librarydb`.`publisher`(`publisher_record`) VALUES 
+ ('Аст')
+,('Эксмо');
 
 CREATE TABLE `librarydb`.`author` (
 	`id_author` 		INT NOT NULL AUTO_INCREMENT,
